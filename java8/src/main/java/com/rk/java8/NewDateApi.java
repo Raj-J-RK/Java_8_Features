@@ -1,5 +1,7 @@
 package com.rk.java8;
 
+import java.text.DateFormat;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -18,6 +20,11 @@ public class NewDateApi {
 		System.out.println("Formatted Current Date Time by Zone:"+LocalDateTime.now(zoneId).format(formatter));
 		System.out.println("Zones : "+ZoneId.getAvailableZoneIds());
 		System.out.println("Default Zone :" + ZoneId.systemDefault());
+		
+		System.out.println("Instant :"+Instant.now());
+		System.out.println("Instant to Epoche:"+Instant.now().toEpochMilli());
+		System.out.println("Epoche to Instant:"+Instant.ofEpochMilli(1586763588957l).atZone(zoneId));
+		
 	}
 
 }

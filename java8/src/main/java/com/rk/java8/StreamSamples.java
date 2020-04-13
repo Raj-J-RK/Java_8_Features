@@ -2,6 +2,7 @@ package com.rk.java8;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -37,6 +38,13 @@ public class StreamSamples {
 		System.out.println("List of peoples from India");
 		System.out.println(users.stream().filter(user -> user.getCountry()=="India")
 				.map(user -> user.getUserfName()).collect(Collectors.toList()));
+		System.out.println("-----------------------------");
+		System.out.println("Group by");
+		System.out.println(users.stream().collect(Collectors.groupingBy(User::getCountry, Collectors.counting())));
+		System.out.println("-----------------------------");
+		System.out.println("Sorted");
+		System.out.println(users.stream().sorted(Comparator.comparingInt(User::getAge)).collect(Collectors.toList()));
+		System.out.println(users.stream().sorted(Comparator.comparing(User::getCountry)).collect(Collectors.toList()));
 		System.out.println("-----------------------------");
 	}
 	
