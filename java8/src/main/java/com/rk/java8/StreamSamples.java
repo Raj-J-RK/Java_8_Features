@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import com.rk.java8.domain.User;
@@ -46,6 +47,12 @@ public class StreamSamples {
 		System.out.println(users.stream().sorted(Comparator.comparingInt(User::getAge)).collect(Collectors.toList()));
 		System.out.println(users.stream().sorted(Comparator.comparing(User::getCountry)).collect(Collectors.toList()));
 		System.out.println("-----------------------------");
+		//convert list to map
+		ArrayList<User> userList = (ArrayList<User>) setUserList();
+		Map<String, String> productPriceMap = userList.stream()
+				.collect(Collectors.toMap(u -> u.getUserId(), u -> u.getUserfName()));
+		System.out.println(productPriceMap);
+		
 	}
 	
 	private static List<User> setUserList(){

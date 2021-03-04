@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+import com.rk.java8.domain.Employee;
+
 public class PredicateExamples {
 
 	public static void main(String[] args) {
@@ -21,6 +23,16 @@ public class PredicateExamples {
 		System.out.println("Reducing list using multiple predicate");
 		Predicate<Integer> predicate2 = x->x<100;
 		System.out.println(list.stream().filter(predicate.and(predicate2)).collect(Collectors.toList()));
+		
+		//predicate chaining
+		Predicate<Employee> empPredicate = (employee) -> employee.getAge() > 30;
+		Predicate<Employee> namePredicate = (employee) -> employee.getName().equalsIgnoreCase("FirstName");
+		Employee emp = new Employee("FirstName", 31, 123, "location");
+		Employee emp1 = new Employee("FirstName", 29, 123, "location");
+		System.out.println(empPredicate.test(emp));
+		System.out.println(empPredicate.negate().test(emp1));
+		System.out.println(empPredicate.and(namePredicate).test(emp));
+		
 
 	}
 
