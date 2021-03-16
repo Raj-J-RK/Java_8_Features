@@ -37,8 +37,19 @@ public class ConcurrentExample {
 			List<Employee> updEmpList = null;
 			try {
 				updEmpList = emps.get().stream().map(emp -> {
+					System.out.println("Active count : "+Thread.activeCount());
 					emp.setName(emp.getName().concat(" Updated"));
 					emp.setLocation(emp.getLocation().concat(" Updated"));
+					System.out.println("Streaming started "+emp.toString());
+					if(emp.getAge() > 60) {
+						try {
+							System.out.println("Waiting");
+							Thread.currentThread().sleep(2000l);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
 					return emp;
 				}).collect(Collectors.toList());
 			} catch (InterruptedException | ExecutionException e) {
@@ -67,6 +78,7 @@ public class ConcurrentExample {
 		empList.add(new Employee("name eight", 40, 8, "location eight"));
 		empList.add(new Employee("name nine", 50, 9, "location nine"));
 		empList.add(new Employee("name ten", 38, 10, "location ten"));
+		System.out.println("Emp list created");
 		return CompletableFuture.completedFuture(empList);
 	}
 }
