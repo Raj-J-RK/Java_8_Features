@@ -2,6 +2,7 @@ package com.rk.java8;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
@@ -53,6 +54,12 @@ public class StreamSamples {
 				.collect(Collectors.toMap(u -> u.getUserId(), u -> u.getUserfName()));
 		System.out.println(productPriceMap);
 		
+		//Array Sorting
+		List<User> sortList = setUserList();
+		Collections.sort(sortList);
+		System.out.println(sortList);
+		Collections.sort(sortList, (u1,u2) -> u1.getCity().compareTo(u2.getCity()));
+		System.out.println(sortList);
 	}
 	
 	private static List<User> setUserList(){
@@ -67,6 +74,7 @@ public class StreamSamples {
 		User user7 = new User("8", "userfName 8", "userlName 8", 32, "Jakarta", "Indonesia", false, LocalDate.of(1993, 1, 1));
 		User user8 = new User("9", "userfName 9", "userlName 9", 33, "Boston", "US", true, LocalDate.of(1994, 1, 1));
 		User user9 = new User("10", "userfName 10", "userlName 10", 34, "Paris", "France", false, LocalDate.of(1995, 1, 1));
+		User user10 = new User("20", "userfName 20", "userlName 20", 54, "Paris", "France", false, LocalDate.of(1985, 1, 1));
 		users.add(user);
 		users.add(user1);
 		users.add(user2);
@@ -77,6 +85,7 @@ public class StreamSamples {
 		users.add(user7);
 		users.add(user8);
 		users.add(user9);
+		users.add(user10);
 		return users;
 	}
 }

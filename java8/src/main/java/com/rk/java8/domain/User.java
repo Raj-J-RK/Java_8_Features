@@ -2,7 +2,7 @@ package com.rk.java8.domain;
 
 import java.time.LocalDate;
 
-public class User {
+public class User implements Comparable<User>{
 	
 	private String userId;
 	private String userfName;
@@ -78,6 +78,11 @@ public class User {
 		return "User [userId=" + userId + ", userfName=" + userfName + ", userlName=" + userlName + ", age=" + age
 				+ ", city=" + city + ", country=" + country + ", governmentEmployee=" + governmentEmployee + ", dob="
 				+ dob + "]";
+	}
+	@Override
+	public int compareTo(User o) {
+		// TODO Auto-generated method stub
+		return Integer.valueOf(this.userId).compareTo(Integer.valueOf(o.userId));
 	}
 
 }
