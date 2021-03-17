@@ -60,6 +60,9 @@ public class StreamSamples {
 		System.out.println(sortList);
 		Collections.sort(sortList, (u1,u2) -> u1.getCity().compareTo(u2.getCity()));
 		System.out.println(sortList);
+		Comparator<User> sortByCtry = Comparator.comparing(User::getCountry);
+		Collections.sort(sortList, sortByCtry);
+		System.out.println(sortList);
 	}
 	
 	private static List<User> setUserList(){
